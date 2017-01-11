@@ -11,7 +11,7 @@
 #include "../rc-switch/RCSwitch.h"
 #include <stdlib.h>
 #include <stdio.h>
-     
+#include <time.h>     
      
 RCSwitch mySwitch;
  
@@ -36,8 +36,9 @@ int main(int argc, char *argv[]) {
      if (pulseLength != 0) mySwitch.setPulseLength(pulseLength);
      mySwitch.enableReceive(PIN);  // Receiver on interrupt 0 => that is pin #2
      
-    
-     while(1) {
+     time_t endTime = time(NULL) + 10;
+ 
+     while(time(NULL) < endTime) {
   
       if (mySwitch.available()) {
     
